@@ -1,6 +1,6 @@
 - 👋 Hi, I’m @chenmeng9
 - 👀 I’m interested in AI
-- 🌱 I’m currently learning Machine Learning
+- 🌱 I’m currently learning Deep Learning
 <!---- 💞️ I’m looking to collaborate on ...
 - 📫 How to reach me ...--->
 
