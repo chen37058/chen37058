@@ -1,5 +1,3 @@
-- 👋 热爱 coding 的在校本科生一枚~
-- 💞️ I’m currently learning Deep Learning
 - 🌱 CSDN: https://blog.csdn.net/YABTL
 - 🌈 知乎：https://www.zhihu.com/people/polina-69-75
 - 📫 微博：
