@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Generating Adversarial Patchs for Visual Recognition in Embodied Navigation">
+  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AdvNav: Generating Physical Adversarial Patchs for Visual Recognition in Embodied Navigation</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">AdvNav: Physical Adversarial Patch Attack for Embodied Navigation via Suppressing Vision Perception</h1>
+          
+          <div class="column has-text-centered">
+            <div class="publication-links">
+             
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2011.12948"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+             
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/google/nerfies"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/tv-patch.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">Nerfies</span> turns selfie videos from your phone into
+        free-viewpoint
+        portraits.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            As embodied navigation agents gain prevalence in the physical world, assessing their 
+            adversarial robustness against physical adversarial examples is crucial, yet remains 
+            unexplored. This work aims to bridge this gap by developing physically realizable 
+            adversarial patches for navigation scenarios. However, existing patch generation 
+            methods, which typically attach directly to object surfaces, lack practicality and 
+            are limited to 2D pixel interference, failing to address multi-view visual perception 
+            challenges in embodied navigation. To overcome these limitations, this paper proposes 
+            a new framework called AdvNav for generating highly deployable adversarial patches.
+            Specifically, for physical practicality, the adversarial patches are designed not to 
+            touch the target objects directly, such as appearing as a painting on a wall. 
+            For effectiveness across multiple views, the patches' texture are optimized through an 
+            iterative process using differentiable rendering, effectively suppressing target detection 
+            from any critical viewing angle. Experiments on the Object Goal Navigation (ObjectNav) 
+            task involved sampling navigation trajectories within a scene and generating tailored 
+            patches for various targets. The results demonstrated a significant reduction in navigation 
+            success rates by 50%. Furthermore, black-box tests across 20 additional scenarios and 5 
+            navigation models confirmed the patches' robust transferability. For further details and 
+            results, please refer to our project page at https://AdvNav/.
+          </p>
+          
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Methods</h2>
+        <img src="./static/images/methods.jpeg"
+                 class="interpolation-image"
+                 alt="Interpolate start reference image."/>
+        <!--div class="publication-video">
+          <img src="./static/images/methods.jpeg"
+                 class="interpolation-image"
+                 alt="Interpolate start reference image."/-->
+          <!--iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe-->
+        </div>
+      </div>
+    </div>
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!-- Experiments. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Experiments</h2>
+      </div>
+    </div>
+
+    <!-- Target: tv_monitor. -->
+    <h3 class="title is-4">Target: tv_monitor</h3>
+
+    <div class="columns is-centered">
+      <!-- Before Attack. -->
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-4">Before Attack</h2>
+          <p>
+            Original scene, successfully navigated to the target.  
+            <br><br>                            
+          </p>
+          <!--p>&nbsp;</p--> <!-- 添加这个空段落来增加额外的空间 -->
+          <video id="tv_monitor" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/tv_1.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!--/ Before Attack. -->
+
+      <!-- Basic Attack. -->
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-4">Basic Attack</h2>
+          <p>
+            Scene with adversarial patch optimized by 2d method , successfully navigated to target.
+          </p>
+          <video id="tv_monitor" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/tv_2.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!--/ Basic Attack. -->
+
+      <!-- Our Attack. -->
+      <div class="column">
+        <h2 class="title is-4">Our Attack</h2>
+        <div class="columns is-centered">
+          <div class="column content">
+            <p>
+              Scene with adversarial patch optimized by our multi-view method, failed to navigate to the target.
+            </p>
+            <video id="tv_monitor" controls playsinline height="100%">
+              <source src="./static/videos/tv_3.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+    <!--/ Target: tv_monitor. -->
+
+    <!--/ Target: toilet. -->
+    <h3 class="title is-4">Target: toilet</h3>
+
+    <div class="columns is-centered">
+      <!-- Before Attack. -->
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-4">Before Attack</h2>
+          <p>
+            Original scene, successfully navigated to the target.  
+            <br><br>                            
+          </p>
+          <!--p>&nbsp;</p--> <!-- 添加这个空段落来增加额外的空间 -->
+          <video id="toilet" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/toilet_1.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!--/ Before Attack. -->
+
+      <!-- Basic Attack. -->
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-4">Basic Attack</h2>
+          <p>
+            Scene with adversarial patch optimized by 2d method , successfully navigated to target.
+          </p>
+          <video id="toilet" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/toilet_2.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!--/ Basic Attack. -->
+
+      <!-- Our Attack. -->
+      <div class="column">
+        <h2 class="title is-4">Our Attack</h2>
+        <div class="columns is-centered">
+          <div class="column content">
+            <p>
+              Scene with adversarial patch optimized by our multi-view method, failed to navigate to the target.
+            </p>
+            <video id="toilet" controls playsinline height="100%">
+              <source src="./static/videos/toilet_3.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!--/ Target: toilet. -->
+
+    <!--/ Target: bed. -->
+    <h3 class="title is-4">Target: bed</h3>
+
+    <div class="columns is-centered">
+      <!-- Before Attack. -->
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-4">Before Attack</h2>
+          <p>
+            Original scene, successfully navigated to the target.  
+            <br><br>                            
+          </p>
+          <!--p>&nbsp;</p--> <!-- 添加这个空段落来增加额外的空间 -->
+          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/dollyzoom-stacked.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!--/ Before Attack. -->
+
+      <!-- Basic Attack. -->
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-4">Basic Attack</h2>
+          <p>
+            Scene with adversarial patch optimized by 2d method , successfully navigated to target.
+          </p>
+          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/dollyzoom-stacked.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!--/ Basic Attack. -->
+
+      <!-- Our Attack. -->
+      <div class="column">
+        <h2 class="title is-4">Our Attack</h2>
+        <div class="columns is-centered">
+          <div class="column content">
+            <p>
+              Scene with adversarial patch optimized by our multi-view method, failed to navigate to the target.
+            </p>
+            <video id="matting-video" controls playsinline height="100%">
+              <source src="./static/videos/matting.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!--/ Target: bed. -->
+
+    <!--/ Target: tv_monitor. -->
+    <h3 class="title is-4">Target: tv_monitor</h3>
+
+    <div class="columns is-centered">
+      <!-- Before Attack. -->
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-4">Before Attack</h2>
+          <p>
+            Original scene, successfully navigated to the target.  
+            <br><br>                            
+          </p>
+          <!--p>&nbsp;</p--> <!-- 添加这个空段落来增加额外的空间 -->
+          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/dollyzoom-stacked.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!--/ Before Attack. -->
+
+      <!-- Basic Attack. -->
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-4">Basic Attack</h2>
+          <p>
+            Scene with adversarial patch optimized by 2d method , successfully navigated to target.
+          </p>
+          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/dollyzoom-stacked.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!--/ Basic Attack. -->
+
+      <!-- Our Attack. -->
+      <div class="column">
+        <h2 class="title is-4">Our Attack</h2>
+        <div class="columns is-centered">
+          <div class="column content">
+            <p>
+              Scene with adversarial patch optimized by our multi-view method, failed to navigate to the target.
+            </p>
+            <video id="matting-video" controls playsinline height="100%">
+              <source src="./static/videos/matting.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!--/ Target: tv_monitor. -->
+
+    
+
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{park2021nerfies,
+  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
+  title     = {Nerfies: Deformable Neural Radiance Fields},
+  journal   = {ICCV},
+  year      = {2021},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            The template is borrowed from
+            <a href="https://github.com/nerfies/nerfies.github.io">
+              Nerfies
+            </a>
+            .
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
